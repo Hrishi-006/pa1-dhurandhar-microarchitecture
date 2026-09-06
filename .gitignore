@@ -1,2 +1,6 @@
 bin/
 solution/
+.DS_Store
+task1/bin/
+task1/bench/bench
+task1/bench/*.csv
