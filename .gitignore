@@ -1,6 +1,39 @@
+# Build output (bin/ matches at any depth, so this covers task1/bin/ and task2/bin/ too)
 bin/
 solution/
 .DS_Store
-task1/bin/
+
+# Task 1: compiled bench driver + scratch CSVs (the CSVs that matter are committed
+# under task1/results/, not left next to the source in bench/)
 task1/bench/bench
 task1/bench/*.csv
+
+# Task 2: compiled bench drivers + scratch CSVs (committed data lives in
+# task2/results/, not next to the source in bench/)
+task2/bench/bench_matmul
+task2/bench/bench_widths
+task2/bench/*.csv
+task2/bench/*.log
+
+# Task 2 llama.cpp demo (`make llama-demo`): clones a full llama.cpp checkout, builds
+# it twice (stock + student), and downloads a model -- all regenerable, all large.
+task2/llama/llama.cpp/
+task2/llama/models/
+
+# LaTeX build artifacts from compiling the reports. Scoped to the report directories
+# (NOT a global *.log/*.aux) because task1/results/*.log is a committed data file,
+# not a build artifact.
+task1/report/*.aux
+task1/report/*.log
+task1/report/*.out
+task1/report/*.fls
+task1/report/*.fdb_latexmk
+task1/report/*.synctex.gz
+task1/report/*.toc
+task2/report/*.aux
+task2/report/*.log
+task2/report/*.out
+task2/report/*.fls
+task2/report/*.fdb_latexmk
+task2/report/*.synctex.gz
+task2/report/*.toc

@@ -1,0 +1,513 @@
+hybrid CPU detected: using cpu_core/ PMU, pinning with: taskset -c 0
+using perf events: cpu_core/instructions/,cpu_core/L1-dcache-loads/,cpu_core/L1-dcache-load-misses/
+  naive   N=512 K=3
+  reorder N=512 K=3
+  unroll N=512 K=3
+  simd N=512 K=3
+  simd128 N=512 K=3
+  simd256 N=512 K=3
+  simd512 N=512 K=3
+    (skipped)
+  optimized N=512 K=3
+    combo N=512 K=3 T=16 w=0 u=1
+    combo N=512 K=3 T=32 w=0 u=1
+    combo N=512 K=3 T=64 w=0 u=1
+    combo N=512 K=3 T=128 w=0 u=1
+    combo N=512 K=3 T=256 w=0 u=1
+    combo N=512 K=3 T=512 w=0 u=1
+    combo N=512 K=3 T=0 w=0 u=1
+    combo N=512 K=3 T=16 w=0 u=2
+    combo N=512 K=3 T=32 w=0 u=2
+    combo N=512 K=3 T=64 w=0 u=2
+    combo N=512 K=3 T=128 w=0 u=2
+    combo N=512 K=3 T=256 w=0 u=2
+    combo N=512 K=3 T=512 w=0 u=2
+    combo N=512 K=3 T=0 w=0 u=2
+    combo N=512 K=3 T=16 w=128 u=1
+    combo N=512 K=3 T=32 w=128 u=1
+    combo N=512 K=3 T=64 w=128 u=1
+    combo N=512 K=3 T=128 w=128 u=1
+    combo N=512 K=3 T=256 w=128 u=1
+    combo N=512 K=3 T=512 w=128 u=1
+    combo N=512 K=3 T=0 w=128 u=1
+    combo N=512 K=3 T=16 w=128 u=2
+    combo N=512 K=3 T=32 w=128 u=2
+    combo N=512 K=3 T=64 w=128 u=2
+    combo N=512 K=3 T=128 w=128 u=2
+    combo N=512 K=3 T=256 w=128 u=2
+    combo N=512 K=3 T=512 w=128 u=2
+    combo N=512 K=3 T=0 w=128 u=2
+    combo N=512 K=3 T=16 w=256 u=1
+    combo N=512 K=3 T=32 w=256 u=1
+    combo N=512 K=3 T=64 w=256 u=1
+    combo N=512 K=3 T=128 w=256 u=1
+    combo N=512 K=3 T=256 w=256 u=1
+    combo N=512 K=3 T=512 w=256 u=1
+    combo N=512 K=3 T=0 w=256 u=1
+    combo N=512 K=3 T=16 w=256 u=2
+    combo N=512 K=3 T=32 w=256 u=2
+    combo N=512 K=3 T=64 w=256 u=2
+    combo N=512 K=3 T=128 w=256 u=2
+    combo N=512 K=3 T=256 w=256 u=2
+    combo N=512 K=3 T=512 w=256 u=2
+    combo N=512 K=3 T=0 w=256 u=2
+    combo N=512 K=3 T=16 w=512 u=1
+      (skipped)
+    combo N=512 K=3 T=32 w=512 u=1
+      (skipped)
+    combo N=512 K=3 T=64 w=512 u=1
+      (skipped)
+    combo N=512 K=3 T=128 w=512 u=1
+      (skipped)
+    combo N=512 K=3 T=256 w=512 u=1
+      (skipped)
+    combo N=512 K=3 T=512 w=512 u=1
+      (skipped)
+    combo N=512 K=3 T=0 w=512 u=1
+      (skipped)
+    combo N=512 K=3 T=16 w=512 u=2
+      (skipped)
+    combo N=512 K=3 T=32 w=512 u=2
+      (skipped)
+    combo N=512 K=3 T=64 w=512 u=2
+      (skipped)
+    combo N=512 K=3 T=128 w=512 u=2
+      (skipped)
+    combo N=512 K=3 T=256 w=512 u=2
+      (skipped)
+    combo N=512 K=3 T=512 w=512 u=2
+      (skipped)
+    combo N=512 K=3 T=0 w=512 u=2
+      (skipped)
+  tile    N=512 K=3 T=16
+  tile    N=512 K=3 T=32
+  tile    N=512 K=3 T=64
+  tile    N=512 K=3 T=128
+  tile    N=512 K=3 T=256
+  tile    N=512 K=3 T=512
+  naive   N=1024 K=3
+  reorder N=1024 K=3
+  unroll N=1024 K=3
+  simd N=1024 K=3
+  simd128 N=1024 K=3
+  simd256 N=1024 K=3
+  simd512 N=1024 K=3
+    (skipped)
+  optimized N=1024 K=3
+    combo N=1024 K=3 T=16 w=0 u=1
+    combo N=1024 K=3 T=32 w=0 u=1
+    combo N=1024 K=3 T=64 w=0 u=1
+    combo N=1024 K=3 T=128 w=0 u=1
+    combo N=1024 K=3 T=256 w=0 u=1
+    combo N=1024 K=3 T=512 w=0 u=1
+    combo N=1024 K=3 T=0 w=0 u=1
+    combo N=1024 K=3 T=16 w=0 u=2
+    combo N=1024 K=3 T=32 w=0 u=2
+    combo N=1024 K=3 T=64 w=0 u=2
+    combo N=1024 K=3 T=128 w=0 u=2
+    combo N=1024 K=3 T=256 w=0 u=2
+    combo N=1024 K=3 T=512 w=0 u=2
+    combo N=1024 K=3 T=0 w=0 u=2
+    combo N=1024 K=3 T=16 w=128 u=1
+    combo N=1024 K=3 T=32 w=128 u=1
+    combo N=1024 K=3 T=64 w=128 u=1
+    combo N=1024 K=3 T=128 w=128 u=1
+    combo N=1024 K=3 T=256 w=128 u=1
+    combo N=1024 K=3 T=512 w=128 u=1
+    combo N=1024 K=3 T=0 w=128 u=1
+    combo N=1024 K=3 T=16 w=128 u=2
+    combo N=1024 K=3 T=32 w=128 u=2
+    combo N=1024 K=3 T=64 w=128 u=2
+    combo N=1024 K=3 T=128 w=128 u=2
+    combo N=1024 K=3 T=256 w=128 u=2
+    combo N=1024 K=3 T=512 w=128 u=2
+    combo N=1024 K=3 T=0 w=128 u=2
+    combo N=1024 K=3 T=16 w=256 u=1
+    combo N=1024 K=3 T=32 w=256 u=1
+    combo N=1024 K=3 T=64 w=256 u=1
+    combo N=1024 K=3 T=128 w=256 u=1
+    combo N=1024 K=3 T=256 w=256 u=1
+    combo N=1024 K=3 T=512 w=256 u=1
+    combo N=1024 K=3 T=0 w=256 u=1
+    combo N=1024 K=3 T=16 w=256 u=2
+    combo N=1024 K=3 T=32 w=256 u=2
+    combo N=1024 K=3 T=64 w=256 u=2
+    combo N=1024 K=3 T=128 w=256 u=2
+    combo N=1024 K=3 T=256 w=256 u=2
+    combo N=1024 K=3 T=512 w=256 u=2
+    combo N=1024 K=3 T=0 w=256 u=2
+    combo N=1024 K=3 T=16 w=512 u=1
+      (skipped)
+    combo N=1024 K=3 T=32 w=512 u=1
+      (skipped)
+    combo N=1024 K=3 T=64 w=512 u=1
+      (skipped)
+    combo N=1024 K=3 T=128 w=512 u=1
+      (skipped)
+    combo N=1024 K=3 T=256 w=512 u=1
+      (skipped)
+    combo N=1024 K=3 T=512 w=512 u=1
+      (skipped)
+    combo N=1024 K=3 T=0 w=512 u=1
+      (skipped)
+    combo N=1024 K=3 T=16 w=512 u=2
+      (skipped)
+    combo N=1024 K=3 T=32 w=512 u=2
+      (skipped)
+    combo N=1024 K=3 T=64 w=512 u=2
+      (skipped)
+    combo N=1024 K=3 T=128 w=512 u=2
+      (skipped)
+    combo N=1024 K=3 T=256 w=512 u=2
+      (skipped)
+    combo N=1024 K=3 T=512 w=512 u=2
+      (skipped)
+    combo N=1024 K=3 T=0 w=512 u=2
+      (skipped)
+  tile    N=1024 K=3 T=16
+  tile    N=1024 K=3 T=32
+  tile    N=1024 K=3 T=64
+  tile    N=1024 K=3 T=128
+  tile    N=1024 K=3 T=256
+  tile    N=1024 K=3 T=512
+  naive   N=2048 K=3
+  reorder N=2048 K=3
+  unroll N=2048 K=3
+  simd N=2048 K=3
+  simd128 N=2048 K=3
+  simd256 N=2048 K=3
+  simd512 N=2048 K=3
+    (skipped)
+  optimized N=2048 K=3
+    combo N=2048 K=3 T=16 w=0 u=1
+    combo N=2048 K=3 T=32 w=0 u=1
+    combo N=2048 K=3 T=64 w=0 u=1
+    combo N=2048 K=3 T=128 w=0 u=1
+    combo N=2048 K=3 T=256 w=0 u=1
+    combo N=2048 K=3 T=512 w=0 u=1
+    combo N=2048 K=3 T=0 w=0 u=1
+    combo N=2048 K=3 T=16 w=0 u=2
+    combo N=2048 K=3 T=32 w=0 u=2
+    combo N=2048 K=3 T=64 w=0 u=2
+    combo N=2048 K=3 T=128 w=0 u=2
+    combo N=2048 K=3 T=256 w=0 u=2
+    combo N=2048 K=3 T=512 w=0 u=2
+    combo N=2048 K=3 T=0 w=0 u=2
+    combo N=2048 K=3 T=16 w=128 u=1
+    combo N=2048 K=3 T=32 w=128 u=1
+    combo N=2048 K=3 T=64 w=128 u=1
+    combo N=2048 K=3 T=128 w=128 u=1
+    combo N=2048 K=3 T=256 w=128 u=1
+    combo N=2048 K=3 T=512 w=128 u=1
+    combo N=2048 K=3 T=0 w=128 u=1
+    combo N=2048 K=3 T=16 w=128 u=2
+    combo N=2048 K=3 T=32 w=128 u=2
+    combo N=2048 K=3 T=64 w=128 u=2
+    combo N=2048 K=3 T=128 w=128 u=2
+    combo N=2048 K=3 T=256 w=128 u=2
+    combo N=2048 K=3 T=512 w=128 u=2
+    combo N=2048 K=3 T=0 w=128 u=2
+    combo N=2048 K=3 T=16 w=256 u=1
+    combo N=2048 K=3 T=32 w=256 u=1
+    combo N=2048 K=3 T=64 w=256 u=1
+    combo N=2048 K=3 T=128 w=256 u=1
+    combo N=2048 K=3 T=256 w=256 u=1
+    combo N=2048 K=3 T=512 w=256 u=1
+    combo N=2048 K=3 T=0 w=256 u=1
+    combo N=2048 K=3 T=16 w=256 u=2
+    combo N=2048 K=3 T=32 w=256 u=2
+    combo N=2048 K=3 T=64 w=256 u=2
+    combo N=2048 K=3 T=128 w=256 u=2
+    combo N=2048 K=3 T=256 w=256 u=2
+    combo N=2048 K=3 T=512 w=256 u=2
+    combo N=2048 K=3 T=0 w=256 u=2
+    combo N=2048 K=3 T=16 w=512 u=1
+      (skipped)
+    combo N=2048 K=3 T=32 w=512 u=1
+      (skipped)
+    combo N=2048 K=3 T=64 w=512 u=1
+      (skipped)
+    combo N=2048 K=3 T=128 w=512 u=1
+      (skipped)
+    combo N=2048 K=3 T=256 w=512 u=1
+      (skipped)
+    combo N=2048 K=3 T=512 w=512 u=1
+      (skipped)
+    combo N=2048 K=3 T=0 w=512 u=1
+      (skipped)
+    combo N=2048 K=3 T=16 w=512 u=2
+      (skipped)
+    combo N=2048 K=3 T=32 w=512 u=2
+      (skipped)
+    combo N=2048 K=3 T=64 w=512 u=2
+      (skipped)
+    combo N=2048 K=3 T=128 w=512 u=2
+      (skipped)
+    combo N=2048 K=3 T=256 w=512 u=2
+      (skipped)
+    combo N=2048 K=3 T=512 w=512 u=2
+      (skipped)
+    combo N=2048 K=3 T=0 w=512 u=2
+      (skipped)
+  tile    N=2048 K=3 T=16
+  tile    N=2048 K=3 T=32
+  tile    N=2048 K=3 T=64
+  tile    N=2048 K=3 T=128
+  tile    N=2048 K=3 T=256
+  tile    N=2048 K=3 T=512
+  naive   N=512 K=5
+  reorder N=512 K=5
+  unroll N=512 K=5
+  simd N=512 K=5
+  simd128 N=512 K=5
+  simd256 N=512 K=5
+  simd512 N=512 K=5
+    (skipped)
+  optimized N=512 K=5
+    combo N=512 K=5 T=16 w=0 u=1
+    combo N=512 K=5 T=32 w=0 u=1
+    combo N=512 K=5 T=64 w=0 u=1
+    combo N=512 K=5 T=128 w=0 u=1
+    combo N=512 K=5 T=256 w=0 u=1
+    combo N=512 K=5 T=512 w=0 u=1
+    combo N=512 K=5 T=0 w=0 u=1
+    combo N=512 K=5 T=16 w=0 u=2
+    combo N=512 K=5 T=32 w=0 u=2
+    combo N=512 K=5 T=64 w=0 u=2
+    combo N=512 K=5 T=128 w=0 u=2
+    combo N=512 K=5 T=256 w=0 u=2
+    combo N=512 K=5 T=512 w=0 u=2
+    combo N=512 K=5 T=0 w=0 u=2
+    combo N=512 K=5 T=16 w=128 u=1
+    combo N=512 K=5 T=32 w=128 u=1
+    combo N=512 K=5 T=64 w=128 u=1
+    combo N=512 K=5 T=128 w=128 u=1
+    combo N=512 K=5 T=256 w=128 u=1
+    combo N=512 K=5 T=512 w=128 u=1
+    combo N=512 K=5 T=0 w=128 u=1
+    combo N=512 K=5 T=16 w=128 u=2
+    combo N=512 K=5 T=32 w=128 u=2
+    combo N=512 K=5 T=64 w=128 u=2
+    combo N=512 K=5 T=128 w=128 u=2
+    combo N=512 K=5 T=256 w=128 u=2
+    combo N=512 K=5 T=512 w=128 u=2
+    combo N=512 K=5 T=0 w=128 u=2
+    combo N=512 K=5 T=16 w=256 u=1
+    combo N=512 K=5 T=32 w=256 u=1
+    combo N=512 K=5 T=64 w=256 u=1
+    combo N=512 K=5 T=128 w=256 u=1
+    combo N=512 K=5 T=256 w=256 u=1
+    combo N=512 K=5 T=512 w=256 u=1
+    combo N=512 K=5 T=0 w=256 u=1
+    combo N=512 K=5 T=16 w=256 u=2
+    combo N=512 K=5 T=32 w=256 u=2
+    combo N=512 K=5 T=64 w=256 u=2
+    combo N=512 K=5 T=128 w=256 u=2
+    combo N=512 K=5 T=256 w=256 u=2
+    combo N=512 K=5 T=512 w=256 u=2
+    combo N=512 K=5 T=0 w=256 u=2
+    combo N=512 K=5 T=16 w=512 u=1
+      (skipped)
+    combo N=512 K=5 T=32 w=512 u=1
+      (skipped)
+    combo N=512 K=5 T=64 w=512 u=1
+      (skipped)
+    combo N=512 K=5 T=128 w=512 u=1
+      (skipped)
+    combo N=512 K=5 T=256 w=512 u=1
+      (skipped)
+    combo N=512 K=5 T=512 w=512 u=1
+      (skipped)
+    combo N=512 K=5 T=0 w=512 u=1
+      (skipped)
+    combo N=512 K=5 T=16 w=512 u=2
+      (skipped)
+    combo N=512 K=5 T=32 w=512 u=2
+      (skipped)
+    combo N=512 K=5 T=64 w=512 u=2
+      (skipped)
+    combo N=512 K=5 T=128 w=512 u=2
+      (skipped)
+    combo N=512 K=5 T=256 w=512 u=2
+      (skipped)
+    combo N=512 K=5 T=512 w=512 u=2
+      (skipped)
+    combo N=512 K=5 T=0 w=512 u=2
+      (skipped)
+  tile    N=512 K=5 T=16
+  tile    N=512 K=5 T=32
+  tile    N=512 K=5 T=64
+  tile    N=512 K=5 T=128
+  tile    N=512 K=5 T=256
+  tile    N=512 K=5 T=512
+  naive   N=1024 K=5
+  reorder N=1024 K=5
+  unroll N=1024 K=5
+  simd N=1024 K=5
+  simd128 N=1024 K=5
+  simd256 N=1024 K=5
+  simd512 N=1024 K=5
+    (skipped)
+  optimized N=1024 K=5
+    combo N=1024 K=5 T=16 w=0 u=1
+    combo N=1024 K=5 T=32 w=0 u=1
+    combo N=1024 K=5 T=64 w=0 u=1
+    combo N=1024 K=5 T=128 w=0 u=1
+    combo N=1024 K=5 T=256 w=0 u=1
+    combo N=1024 K=5 T=512 w=0 u=1
+    combo N=1024 K=5 T=0 w=0 u=1
+    combo N=1024 K=5 T=16 w=0 u=2
+    combo N=1024 K=5 T=32 w=0 u=2
+    combo N=1024 K=5 T=64 w=0 u=2
+    combo N=1024 K=5 T=128 w=0 u=2
+    combo N=1024 K=5 T=256 w=0 u=2
+    combo N=1024 K=5 T=512 w=0 u=2
+    combo N=1024 K=5 T=0 w=0 u=2
+    combo N=1024 K=5 T=16 w=128 u=1
+    combo N=1024 K=5 T=32 w=128 u=1
+    combo N=1024 K=5 T=64 w=128 u=1
+    combo N=1024 K=5 T=128 w=128 u=1
+    combo N=1024 K=5 T=256 w=128 u=1
+    combo N=1024 K=5 T=512 w=128 u=1
+    combo N=1024 K=5 T=0 w=128 u=1
+    combo N=1024 K=5 T=16 w=128 u=2
+    combo N=1024 K=5 T=32 w=128 u=2
+    combo N=1024 K=5 T=64 w=128 u=2
+    combo N=1024 K=5 T=128 w=128 u=2
+    combo N=1024 K=5 T=256 w=128 u=2
+    combo N=1024 K=5 T=512 w=128 u=2
+    combo N=1024 K=5 T=0 w=128 u=2
+    combo N=1024 K=5 T=16 w=256 u=1
+    combo N=1024 K=5 T=32 w=256 u=1
+    combo N=1024 K=5 T=64 w=256 u=1
+    combo N=1024 K=5 T=128 w=256 u=1
+    combo N=1024 K=5 T=256 w=256 u=1
+    combo N=1024 K=5 T=512 w=256 u=1
+    combo N=1024 K=5 T=0 w=256 u=1
+    combo N=1024 K=5 T=16 w=256 u=2
+    combo N=1024 K=5 T=32 w=256 u=2
+    combo N=1024 K=5 T=64 w=256 u=2
+    combo N=1024 K=5 T=128 w=256 u=2
+    combo N=1024 K=5 T=256 w=256 u=2
+    combo N=1024 K=5 T=512 w=256 u=2
+    combo N=1024 K=5 T=0 w=256 u=2
+    combo N=1024 K=5 T=16 w=512 u=1
+      (skipped)
+    combo N=1024 K=5 T=32 w=512 u=1
+      (skipped)
+    combo N=1024 K=5 T=64 w=512 u=1
+      (skipped)
+    combo N=1024 K=5 T=128 w=512 u=1
+      (skipped)
+    combo N=1024 K=5 T=256 w=512 u=1
+      (skipped)
+    combo N=1024 K=5 T=512 w=512 u=1
+      (skipped)
+    combo N=1024 K=5 T=0 w=512 u=1
+      (skipped)
+    combo N=1024 K=5 T=16 w=512 u=2
+      (skipped)
+    combo N=1024 K=5 T=32 w=512 u=2
+      (skipped)
+    combo N=1024 K=5 T=64 w=512 u=2
+      (skipped)
+    combo N=1024 K=5 T=128 w=512 u=2
+      (skipped)
+    combo N=1024 K=5 T=256 w=512 u=2
+      (skipped)
+    combo N=1024 K=5 T=512 w=512 u=2
+      (skipped)
+    combo N=1024 K=5 T=0 w=512 u=2
+      (skipped)
+  tile    N=1024 K=5 T=16
+  tile    N=1024 K=5 T=32
+  tile    N=1024 K=5 T=64
+  tile    N=1024 K=5 T=128
+  tile    N=1024 K=5 T=256
+  tile    N=1024 K=5 T=512
+  naive   N=2048 K=5
+  reorder N=2048 K=5
+  unroll N=2048 K=5
+  simd N=2048 K=5
+  simd128 N=2048 K=5
+  simd256 N=2048 K=5
+  simd512 N=2048 K=5
+    (skipped)
+  optimized N=2048 K=5
+    combo N=2048 K=5 T=16 w=0 u=1
+    combo N=2048 K=5 T=32 w=0 u=1
+    combo N=2048 K=5 T=64 w=0 u=1
+    combo N=2048 K=5 T=128 w=0 u=1
+    combo N=2048 K=5 T=256 w=0 u=1
+    combo N=2048 K=5 T=512 w=0 u=1
+    combo N=2048 K=5 T=0 w=0 u=1
+    combo N=2048 K=5 T=16 w=0 u=2
+    combo N=2048 K=5 T=32 w=0 u=2
+    combo N=2048 K=5 T=64 w=0 u=2
+    combo N=2048 K=5 T=128 w=0 u=2
+    combo N=2048 K=5 T=256 w=0 u=2
+    combo N=2048 K=5 T=512 w=0 u=2
+    combo N=2048 K=5 T=0 w=0 u=2
+    combo N=2048 K=5 T=16 w=128 u=1
+    combo N=2048 K=5 T=32 w=128 u=1
+    combo N=2048 K=5 T=64 w=128 u=1
+    combo N=2048 K=5 T=128 w=128 u=1
+    combo N=2048 K=5 T=256 w=128 u=1
+    combo N=2048 K=5 T=512 w=128 u=1
+    combo N=2048 K=5 T=0 w=128 u=1
+    combo N=2048 K=5 T=16 w=128 u=2
+    combo N=2048 K=5 T=32 w=128 u=2
+    combo N=2048 K=5 T=64 w=128 u=2
+    combo N=2048 K=5 T=128 w=128 u=2
+    combo N=2048 K=5 T=256 w=128 u=2
+    combo N=2048 K=5 T=512 w=128 u=2
+    combo N=2048 K=5 T=0 w=128 u=2
+    combo N=2048 K=5 T=16 w=256 u=1
+    combo N=2048 K=5 T=32 w=256 u=1
+    combo N=2048 K=5 T=64 w=256 u=1
+    combo N=2048 K=5 T=128 w=256 u=1
+    combo N=2048 K=5 T=256 w=256 u=1
+    combo N=2048 K=5 T=512 w=256 u=1
+    combo N=2048 K=5 T=0 w=256 u=1
+    combo N=2048 K=5 T=16 w=256 u=2
+    combo N=2048 K=5 T=32 w=256 u=2
+    combo N=2048 K=5 T=64 w=256 u=2
+    combo N=2048 K=5 T=128 w=256 u=2
+    combo N=2048 K=5 T=256 w=256 u=2
+    combo N=2048 K=5 T=512 w=256 u=2
+    combo N=2048 K=5 T=0 w=256 u=2
+    combo N=2048 K=5 T=16 w=512 u=1
+      (skipped)
+    combo N=2048 K=5 T=32 w=512 u=1
+      (skipped)
+    combo N=2048 K=5 T=64 w=512 u=1
+      (skipped)
+    combo N=2048 K=5 T=128 w=512 u=1
+      (skipped)
+    combo N=2048 K=5 T=256 w=512 u=1
+      (skipped)
+    combo N=2048 K=5 T=512 w=512 u=1
+      (skipped)
+    combo N=2048 K=5 T=0 w=512 u=1
+      (skipped)
+    combo N=2048 K=5 T=16 w=512 u=2
+      (skipped)
+    combo N=2048 K=5 T=32 w=512 u=2
+      (skipped)
+    combo N=2048 K=5 T=64 w=512 u=2
+      (skipped)
+    combo N=2048 K=5 T=128 w=512 u=2
+      (skipped)
+    combo N=2048 K=5 T=256 w=512 u=2
+      (skipped)
+    combo N=2048 K=5 T=512 w=512 u=2
+      (skipped)
+    combo N=2048 K=5 T=0 w=512 u=2
+      (skipped)
+  tile    N=2048 K=5 T=16
+  tile    N=2048 K=5 T=32
+  tile    N=2048 K=5 T=64
+  tile    N=2048 K=5 T=128
+  tile    N=2048 K=5 T=256
+  tile    N=2048 K=5 T=512
+wrote /home/ajay/comp_arch/task1/results/sweep_full.csv

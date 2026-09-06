@@ -1,0 +1,35 @@
+Task 1B: tiling -- MPKI and speedup vs naive, best tile size per (size,K)
+L1-D cache (P-core, pinned CPU0): 48 KiB, 12-way, 64B lines. L2=1.25MiB/core, L3=12MiB shared.
+
+      size  K naive_mpki best_tile  tile_mpki   tile_ms  naive_ms  speedup
+   512x512  3     0.7826     16x16     2.2746     1.174     2.283    1.94x
+   512x512  5     0.3831     16x16     0.8946     3.280     5.188    1.58x
+ 1024x1024  3     0.7605     32x32    25.8782     6.321     7.873    1.25x
+ 1024x1024  5     0.3916     32x32    15.9799    16.770    23.708    1.41x
+ 2048x2048  3     0.8717     16x16    22.2563    26.657    31.500    1.18x
+ 2048x2048  5     0.9784     32x32    14.1933    65.814    81.686    1.24x
+
+Note (revised after adding L2/LLC counters, see 1B_l2_llc_hierarchy.csv): naive's
+L1-D MPKI is already very low at every size (K=3/5 window is a 3-row sliding strip,
+~2050*3*4B =~ 24KB, comfortably inside the 48KB L1-D REGARDLESS of image size --
+the working set does not grow with H*W). Tiled kernels do NOT beat naive's L1 MPKI
+outright, and L1 MPKI alone is misleading here: it does not say whether a miss was
+satisfied by fast L2 or slow DRAM. Adding L2 (l2_rqsts.miss) and LLC-load-misses
+at the graded 2048x2048 K=3 workload shows the real mechanism:
+
+  kernel        L1 misses   L2 misses   LLC misses
+  naive          7,499,850  13,451,231      266,194
+  reorder       35,703,672 106,669,879   55,634,284   <- most L1 misses go all the way to DRAM
+  tile   16x16  89,082,717  13,433,313      340,922   <- L1 misses UP, but L2/LLC misses ~= naive
+  tile  512x512 85,891,539 112,906,336    5,332,681   <- tile too big: L2/LLC misses climb back up
+  optimized     72,031,052  14,085,045    4,037,107   <- tiled + SIMD: L2/LLC misses stay low
+
+So tiling's real effect is moving the miss traffic from "L1 miss that goes to DRAM"
+to "L1 miss that hits in L2/L3" by keeping the (tile + K-wide halo) resident in a
+level the CPU can service quickly. L1 MPKI goes UP under tiling because reordering
+into K*K passes-per-tile still revisits data more times than naive's single pass,
+but each revisit now hits a fast level instead of DRAM. The L2/LLC miss columns
+above are the correct evidence for "did tiling fix the cache problem" -- rising
+sharply once tile size exceeds roughly what fits L1+L2 (see the 16..512 sweep in
+1B_l2_llc_hierarchy.csv), which is the direct explanation for why tile speedup
+peaks at small tiles (16x16/32x32) and degrades for large ones.
