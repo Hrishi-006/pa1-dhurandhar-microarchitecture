@@ -1,39 +1,54 @@
-# Build output (bin/ matches at any depth, so this covers task1/bin/ and task2/bin/ too)
+# ---------------------------------------------------------------------------
+# The tracked tree is exactly the deliverable layout from the assignment spec:
+#
+#   task1/src/*.cpp, task1/task1_report.pdf
+#   task2/src/*.cpp, task2/task2_report.pdf
+#   plots/*.png
+#   README.md
+#
+# plus the starter scaffolding needed to actually build and grade the code
+# (Makefile, include/, main.cpp, the naive baselines, task READMEs, the
+# llama.cpp injection scripts). Everything else below is ignored.
+# ---------------------------------------------------------------------------
+
+# Build output (bin/ matches at any depth: task1/bin/, task2/bin/)
 bin/
 solution/
+*.o
+*.d
+*.dSYM/
 .DS_Store
 
-# Task 1: compiled bench driver + scratch CSVs (the CSVs that matter are committed
-# under task1/results/, not left next to the source in bench/)
-task1/bench/bench
-task1/bench/*.csv
+# Local benchmarking harnesses (drivers, sweep scripts, width variants).
+# Not part of the deliverable; used only to produce the numbers in the reports.
+task1/bench/
+task2/bench/
 
-# Task 2: compiled bench drivers + scratch CSVs (committed data lives in
-# task2/results/, not next to the source in bench/)
-task2/bench/bench_matmul
-task2/bench/bench_widths
-task2/bench/*.csv
-task2/bench/*.log
+# Raw measurement data (CSV/TXT/log sweeps). The reports and plots/ carry the
+# results that matter; the raw dumps stay local.
+task1/results/
+task2/results/
 
-# Task 2 llama.cpp demo (`make llama-demo`): clones a full llama.cpp checkout, builds
-# it twice (stock + student), and downloads a model -- all regenerable, all large.
+# LaTeX sources and build artifacts for the reports. Only the compiled
+# task1/task1_report.pdf and task2/task2_report.pdf are tracked.
+task1/report/
+task2/report/
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+
+# Assignment handout (course-provided, ~5 MB, not our work)
+CS683 PA1 2026.pdf
+
+# Task 2 llama.cpp demo (`make llama-demo`): full checkout + built binaries +
+# downloaded model weights. All regenerable, all large.
 task2/llama/llama.cpp/
 task2/llama/models/
+*.gguf
 
-# LaTeX build artifacts from compiling the reports. Scoped to the report directories
-# (NOT a global *.log/*.aux) because task1/results/*.log is a committed data file,
-# not a build artifact.
-task1/report/*.aux
-task1/report/*.log
-task1/report/*.out
-task1/report/*.fls
-task1/report/*.fdb_latexmk
-task1/report/*.synctex.gz
-task1/report/*.toc
-task2/report/*.aux
-task2/report/*.log
-task2/report/*.out
-task2/report/*.fls
-task2/report/*.fdb_latexmk
-task2/report/*.synctex.gz
-task2/report/*.toc
+# Python/venv scratch used for plotting
+__pycache__/
+.venv/
+venv/
