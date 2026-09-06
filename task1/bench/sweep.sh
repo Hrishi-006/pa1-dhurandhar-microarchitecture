@@ -23,37 +23,61 @@ UNROLLS="${UNROLLS:-1 2}"                # combo axis 3: vectors per iteration
 [ -x ./bench ] || make -s || { echo "build failed" >&2; exit 1; }
 
 # ---- figure out which perf events actually exist on this CPU -----------------
-have_event() { perf stat -e "$1" -x, true 2>&1 | grep -q "not supported" && return 1 || return 0; }
+# ---- hybrid-CPU aware event + core selection ---------------------------------
+# Alder/Raptor Lake expose two PMUs: cpu_core (P-cores) and cpu_atom (E-cores).
+# A bare "instructions" fans out to BOTH, and the generic L1-dcache events are
+# unsupported on cpu_atom, so we name the PMU explicitly and pin to a P-core.
+PMU=""
+PIN=""
+CPU_CORE_SYS="${CPU_CORE_SYS:-/sys/devices/cpu_core}"   # overridable for testing
+if [ -r "$CPU_CORE_SYS/cpus" ]; then
+    PMU="cpu_core/"
+    PCORES=$(cat "$CPU_CORE_SYS/cpus")            # e.g. "0-11"
+    PCORE0=${PCORES%%,*}; PCORE0=${PCORE0%%-*}    # first P-core id, e.g. "0"
+    PIN="taskset -c $PCORE0"                      # single core: stable timings
+    echo "hybrid CPU detected: using ${PMU} PMU, pinning with: $PIN" >&2
+fi
+ev() { [ -n "$PMU" ] && echo "${PMU}$1/" || echo "$1"; }
 
 command -v perf >/dev/null 2>&1 || {
-    echo "ERROR: perf is not installed (try: sudo apt install linux-tools-\$(uname -r))" >&2
+    echo "ERROR: perf is not installed (try: sudo apt install linux-tools-$(uname -r))" >&2
+    exit 1
+}
+command -v taskset >/dev/null 2>&1 || PIN=""
+
+# An event is usable only if it returns a NUMBER on a real (pinned) workload.
+# "true" is too short and may not even land on a P-core, so probe with the bench.
+have_event() {
+    local v
+    v=$($PIN perf stat -x, -e "$1" ./bench naive 64 64 3 0 0 1 2>&1 \
+        | grep ",$1," | head -1 | cut -d, -f1)
+    case "$v" in ''|*[!0-9]*) return 1 ;; *) return 0 ;; esac
+}
+
+[ -x ./bench ] || make -s || { echo "build failed" >&2; exit 1; }
+
+EV_INSTR=$(ev instructions)
+have_event "$EV_INSTR" || {
+    echo "ERROR: could not count instructions (got nothing usable)." >&2
+    echo "  paranoid level: $(cat /proc/sys/kernel/perf_event_paranoid)" >&2
+    echo "  if it is > 1:  sudo sysctl -w kernel.perf_event_paranoid=1" >&2
+    echo "  if events read '<not supported>' this machine has no PMU access" >&2
+    echo "  (VM/WSL) -- fall back to: valgrind --tool=cachegrind" >&2
     exit 1
 }
 
-# perf exits 0 even when it is denied access, so check that a real NUMBER came back
-# rather than trusting the exit status.  Otherwise the whole sweep runs and silently
-# writes empty counter columns.
-probe=$(perf stat -x, -e instructions true 2>&1 | grep ",instructions" | cut -d, -f1)
-case "$probe" in
-    ''|*[!0-9]*)
-        echo "ERROR: perf ran but returned no counter value (got: '${probe:-nothing}')." >&2
-        echo "  If it said 'Access to performance monitoring operations is limited':" >&2
-        echo "      sudo sysctl -w kernel.perf_event_paranoid=1" >&2
-        echo "  To make that persist across reboots:" >&2
-        echo "      echo 'kernel.perf_event_paranoid=1' | sudo tee /etc/sysctl.d/99-perf.conf" >&2
-        echo "  If events read '<not supported>', this machine has no PMU access" >&2
-        echo "  (VM/WSL) -- fall back to: valgrind --tool=cachegrind" >&2
-        exit 1
-        ;;
-esac
-echo "perf probe OK (instructions=$probe on a trivial process)" >&2
+# L1-D miss event: try the generic name, then the Intel-specific one.
+EV_MISS=""
+for cand in "$(ev L1-dcache-load-misses)" "$(ev MEM_LOAD_RETIRED.L1_MISS)"; do
+    if have_event "$cand"; then EV_MISS="$cand"; break; fi
+done
+[ -n "$EV_MISS" ] || { echo "ERROR: no usable L1-D miss event on this CPU." >&2; exit 1; }
 
-EV_INSTR="instructions"
-EV_LOADS="L1-dcache-loads"
-EV_MISS="L1-dcache-load-misses"
-have_event "$EV_LOADS" || EV_LOADS=""
-have_event "$EV_MISS"  || EV_MISS="MEM_LOAD_RETIRED.L1_MISS"
-have_event "$EV_MISS"  || { echo "ERROR: no usable L1-D miss event; fall back to cachegrind." >&2; exit 1; }
+# L1-D load event (optional; MPKI does not need it).
+EV_LOADS=""
+for cand in "$(ev L1-dcache-loads)" "$(ev MEM_INST_RETIRED.ALL_LOADS)"; do
+    if have_event "$cand"; then EV_LOADS="$cand"; break; fi
+done
 
 EVENTS="$EV_INSTR,$EV_MISS"
 [ -n "$EV_LOADS" ] && EVENTS="$EV_INSTR,$EV_LOADS,$EV_MISS"
@@ -65,7 +89,7 @@ measure() {
     local perf_out bench_out
     perf_out=$(mktemp); bench_out=$(mktemp)
 
-    perf stat -x, -o "$perf_out" -e "$EVENTS" \
+    $PIN perf stat -x, -o "$perf_out" -e "$EVENTS" \
         ./bench "$1" "$2" "$3" "$4" "$5" "$6" "$REPS" >"$bench_out" 2>/dev/null
 
     # perf -x, lines look like:  value,unit,event,run_time,pct
