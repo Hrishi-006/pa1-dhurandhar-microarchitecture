@@ -30,12 +30,23 @@ command -v perf >/dev/null 2>&1 || {
     exit 1
 }
 
-if ! perf stat -e instructions -x, true >/dev/null 2>&1; then
-    echo "ERROR: perf cannot read counters here." >&2
-    echo "  try: sudo sysctl kernel.perf_event_paranoid=1" >&2
-    echo "  if events are '<not supported>' you are likely in a VM without PMU access." >&2
-    exit 1
-fi
+# perf exits 0 even when it is denied access, so check that a real NUMBER came back
+# rather than trusting the exit status.  Otherwise the whole sweep runs and silently
+# writes empty counter columns.
+probe=$(perf stat -x, -e instructions true 2>&1 | grep ",instructions" | cut -d, -f1)
+case "$probe" in
+    ''|*[!0-9]*)
+        echo "ERROR: perf ran but returned no counter value (got: '${probe:-nothing}')." >&2
+        echo "  If it said 'Access to performance monitoring operations is limited':" >&2
+        echo "      sudo sysctl -w kernel.perf_event_paranoid=1" >&2
+        echo "  To make that persist across reboots:" >&2
+        echo "      echo 'kernel.perf_event_paranoid=1' | sudo tee /etc/sysctl.d/99-perf.conf" >&2
+        echo "  If events read '<not supported>', this machine has no PMU access" >&2
+        echo "  (VM/WSL) -- fall back to: valgrind --tool=cachegrind" >&2
+        exit 1
+        ;;
+esac
+echo "perf probe OK (instructions=$probe on a trivial process)" >&2
 
 EV_INSTR="instructions"
 EV_LOADS="L1-dcache-loads"
@@ -73,6 +84,14 @@ measure() {
         rm -f "$perf_out" "$bench_out"
         return 1
     fi
+    case "$instr" in                # never write a row with empty counters
+        ''|*[!0-9]*)
+            echo "ERROR: perf returned no instruction count for '$1' (got '${instr:-nothing}')." >&2
+            echo "       aborting: counters are required. See the perf notes above." >&2
+            rm -f "$perf_out" "$bench_out"
+            exit 1
+            ;;
+    esac
     mpki=$(awk -v m="$l1m" -v i="$instr" 'BEGIN{ if (i+0>0) printf "%.4f", 1000*m/i; else printf "" }')
     echo "$csv,${instr},${l1l},${l1m},${mpki}"
 
