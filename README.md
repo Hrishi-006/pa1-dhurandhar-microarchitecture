@@ -9,10 +9,17 @@ for the full problem statement.
 
 ## Tasks
 
-| Task | Workload | Techniques | Instructions |
-|------|----------|------------|--------------|
-| 1 | 2D convolution | Loop reordering, loop unrolling, cache tiling, SIMD (AVX2) | [task1/README.md](task1/README.md) |
-| 2 | Matrix multiplication (SGEMM), injected into llama.cpp | SIMD (AVX2), cache blocking + software prefetching, combining everything | [task2/README.md](task2/README.md) |
+| Task | Workload | Techniques | Report |
+|------|----------|------------|--------|
+| 1 | 2D convolution | Loop reordering, loop unrolling, cache tiling, SIMD (AVX2) | [task1/task1_report.pdf](task1/task1_report.pdf) |
+| 2 | Matrix multiplication (SGEMM), injected into llama.cpp | SIMD (AVX2), cache blocking + software prefetching, combining everything | [task2/task2_report.pdf](task2/task2_report.pdf) |
 
-Each task directory is self-contained: build instructions, the files you need to edit,
-grading, and submission requirements all live in that task's own README. Start there.
+## Layout
+
+```
+task1/src/   conv_reorder.cpp, conv_unroll.cpp, conv_tile.cpp, conv_simd.cpp, conv_optimized.cpp
+task2/src/   matmul_simd.cpp, matmul_prefetch.cpp, matmul_optimized.cpp
+plots/       supporting figures referenced by the reports
+```
+
+Each report documents the motivation, implementation details, and speedup analysis for its task.
